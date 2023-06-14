@@ -250,30 +250,80 @@
 
 
 
-
+// ----------------------------------------------
+// Importation du module dotenv pour la gestion des variables d'environnement
+// ----------------------------------------------
 const dotenv = require('dotenv');
+
+// ----------------------------------------------
+// Importation du module express pour la création du serveur
+// ----------------------------------------------
 const express = require('express');
+
+// ----------------------------------------------
+// Importation des routes pour les livres et les auteurs
+// ----------------------------------------------
 const livreRoute = require('./routes/livres');
 const autheurRoute = require('./routes/autheurs');
+
+// ----------------------------------------------
+// Importation des middlewares pour Swagger
+// ----------------------------------------------
 const { serveSwagger, setupSwagger } = require('./middleware/swagger.middleware');
 
+
+// ----------------------------------------------
+// Chargement des variables d'environnement à partir du fichier .env
+// ----------------------------------------------
 dotenv.config();
 
+// ----------------------------------------------
+// Création de l'instance du serveur Express
+// ----------------------------------------------
 const server = express();
+
+// ----------------------------------------------
+// Utilisation du middleware pour la gestion des données JSON
+// ----------------------------------------------
 server.use(express.json());
+
+// ----------------------------------------------
+// Configuration de l'indentation du format JSON
+// ----------------------------------------------
 server.set('json spaces', 2);
 
+// ----------------------------------------------
+// Configuration des routes pour Swagger
+// ----------------------------------------------
 server.use('/api/v1/docs', serveSwagger, setupSwagger);
+
+// ----------------------------------------------
+// Configuration des routes pour les livres et les auteurs
+// ----------------------------------------------
 server.use('/api/v1/livres', livreRoute);
 server.use('/api/v1/autheurs', autheurRoute);
 
+
+// ----------------------------------------------
+// Route de base pour tester le serveur
+// ----------------------------------------------
 server.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
+// ----------------------------------------------
+// Configuration du port d'écoute du serveur
+// ----------------------------------------------
 const port = Number(process.env.PORT || 8081);
+
+// ----------------------------------------------
+// Démarrage du serveur
+// ----------------------------------------------
 server.listen(port, () => {
   console.log(`Your port is ${port}`);
 });
 
+// ----------------------------------------------
+// Exportation de l'instance du serveur pour utilisation externe
+// ----------------------------------------------
 module.exports = server;

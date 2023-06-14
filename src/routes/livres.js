@@ -1,5 +1,11 @@
+// ----------------------------------------------
+// Import du module Router d'Express pour la gestion des routes
+// ----------------------------------------------
 const router = require('express').Router();
 
+// ----------------------------------------------
+// Import des fonctions du contrôleur des livres
+// ----------------------------------------------
 const {
     getAllLivres,
     getLivreById,
@@ -9,7 +15,7 @@ const {
 
 } = require('../controllers/livre.controller');
 // ----------------------------------------------
-// Récupérer l'enssembles des livre
+// Récupérer l'ensembles des livre
 // ----------------------------------------------
 /**
  * @swagger
@@ -23,6 +29,10 @@ const {
  *         description: Succès de la requête avec les livres récupérées.
  */
 router.get('/', getAllLivres);
+
+// ----------------------------------------------
+// Récupérer un livre par l'identifiant
+// ----------------------------------------------
 /**
  * @swagger
  * /livres/{id}:
@@ -47,6 +57,10 @@ router.get('/', getAllLivres);
  *               $ref: '#/components/schemas/Livre'
  */
 router.get('/:id', getLivreById);
+
+// ----------------------------------------------
+// ajouter un livre
+// ----------------------------------------------
 /**
  * @swagger
  * /livres:
@@ -69,6 +83,10 @@ router.get('/:id', getLivreById);
  *               $ref: '#/components/schemas/Livre'
  */
 router.post('/', createLivre);
+
+// ----------------------------------------------
+// modifier un livre par son identifiant
+// ----------------------------------------------
 /**
  * @swagger
  * /livres/{id}:
@@ -99,6 +117,10 @@ router.post('/', createLivre);
  *               $ref: '#/components/schemas/Livre'
  */
 router.put('/:id', updateLivre);
+
+// ----------------------------------------------
+// supprimer un livre par son identifiant
+// ----------------------------------------------
 /**
  * @swagger
  * /livres/{id}:

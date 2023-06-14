@@ -1,5 +1,11 @@
+// ----------------------------------------------
+// Import du module Router d'Express pour la gestion des routes
+// ----------------------------------------------
 const router = require('express').Router();
 
+// ----------------------------------------------
+// Import des fonctions du contrôleur des auteurs
+// ----------------------------------------------
 const {
     getAllAutheurs,
     getAutheurById,
@@ -9,6 +15,9 @@ const {
 
 } = require('../controllers/autheur.controller');
 
+// ----------------------------------------------
+// Récupérer l'ensembles des autheurs
+// ----------------------------------------------
 /**
  * @swagger
  * /autheurs:
@@ -22,6 +31,10 @@ const {
  */
 router.get('/', getAllAutheurs);
 
+
+// ----------------------------------------------
+// Récupérer un autheur par l'identifiant
+// ----------------------------------------------
 /**
  * @swagger
  * /autheurs/{id}:
@@ -47,6 +60,9 @@ router.get('/', getAllAutheurs);
  */
 router.get('/:id', getAutheurById);
 
+// ----------------------------------------------
+// ajouter un autheur
+// ----------------------------------------------
 /**
  * @swagger
  * /autheurs:
@@ -70,6 +86,10 @@ router.get('/:id', getAutheurById);
  */
 router.post('/', createAutheur);
 
+
+// ----------------------------------------------
+// modifier un autheur par son identifiant
+// ----------------------------------------------
 /**
  * @swagger
  * /autheurs/{id}:
@@ -101,6 +121,10 @@ router.post('/', createAutheur);
  */
 router.put('/:id', updateAutheur);
 
+
+// ----------------------------------------------
+// supprimer un autheur par son identifiant
+// ----------------------------------------------
 /**
  * @swagger
  * /autheurs/{id}:
